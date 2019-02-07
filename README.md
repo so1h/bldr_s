@@ -14,7 +14,7 @@ To run with qemu booting from a PXE server loading via tftp the file bldr_s.0:
 
     make bootpxe
     
-In the makefile set 1/0 in the line 22 for change model unreal/huge.    
+In the makefile set 1/0 in the line 11 for change model unreal/huge.    
 
 Screenshots: 
 
