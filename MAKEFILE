@@ -1,6 +1,8 @@
 #----------------------------------------------------------------------------#
 #                                                                            #
-#    ejecute el comando make help para ver los objetivos disponibles         #
+#    Makefile for compile and run with qemu booting from a tftp server       #
+#                                                                            #
+#          make clean            make             make bootpxe               #
 #                                                                            #
 #----------------------------------------------------------------------------#
 
