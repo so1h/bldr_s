@@ -1,0 +1,65 @@
+#----------------------------------------------------------------------------#
+#                                                                            #
+#    ejecute el comando make help para ver los objetivos disponibles         #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+PROGRAM = bldr_s
+
+!if 0
+MODEL  = unreal 
+!else
+MODEL  = huge 
+!endif 
+
+CC     = smlrcc
+CFLAGS = -S -$(MODEL) 
+AS     = nasm
+AFLAGS = -f elf -w-other
+LD     = smlrl
+LFLAGS = -$(MODEL)
+
+!if $(MODEL) == unreal
+C0D    = c0du
+LCD    = $(UTMP):\SmallerC\v0100\lib\lcdu.a
+!else
+C0D    = c0dh
+LCD    = $(UTMP):\SmallerC\v0100\lib\lcdh.a
+!endif
+
+all: $(PROGRAM).0
+	
+.exe.0: 
+!if $(MSYSTEM) == MINGW
+  tail -c +33 $*.exe > $*.0
+!else
+  extraer $*.exe 32 0 $*.0
+!endif
+
+$(PROGRAM).exe: $(PROGRAM).o $(C0D).o $(LCD) irq5isr.o
+  $(LD) $(LFLAGS) $*.o $(C0D).o $(LCD) irq5isr.o -o $*.exe -map $*.map 
+
+$(PROGRAM).o: $(PROGRAM).asm 
+  $(AS) $(AFLAGS) $*.asm -o $*.o -l $*.lst
+
+$(C0D).o: Y:\SmallerC\v0100\srclib\$(C0D).asm 
+  $(AS) $(AFLAGS) $? -o $(*B).o -l $(*B).lst
+
+irq5isr.o: Y:\SmallerC\v0100\srclib\irq5isr.asm 
+  $(AS) $(AFLAGS) $? -o $(*B).o -l $(*B).lst
+
+Y:\SmallerC\v0100\srclib\irq5isr.asm: Y:\SmallerC\v0100\srclib\irq5isr.c 
+  $(CC) $(CFLAGS) $*.c -o $*.asm 
+
+$(PROGRAM).asm: $(PROGRAM).c 
+  $(CC) $(CFLAGS) $*.c -o $*.asm 
+
+bootpxe: $(PROGRAM).0
+  X:\Interno\qemu-2.11.0\qemu-system-i386 -boot n -device e1000,netdev=n1 \
+        -netdev user,id=n1,tftp=.,bootfile=/$(PROGRAM).0
+
+clean: asm lst map o exe 0
+
+asm lst map o exe 0: 
+  @if exist *.$* del /Q *.$* 
+  
