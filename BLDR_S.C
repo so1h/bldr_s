@@ -87,7 +87,7 @@ void __start__ ( char * ptrPXENV, char * ptrPXE ) {
 
     sprintf(buf,
         "\n"
-        " Hello world from Network Boot Program \n"
+        " Hello world from Network Boot Program writen in SmallerC \n"
         "\n"
         " ptrPXENV->Signature   = \"%6.6s\" \n"
         "\n"
