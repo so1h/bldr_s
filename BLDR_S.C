@@ -36,8 +36,8 @@ asm
     "  push eax           \n"
 
 #ifndef __UNREAL__
-    "  mov eax,0xE0E0E0E0 \n"                 /* makes fill return address */
-    "  push eax           \n"
+    "  mov eax,0x0E0E0E0E \n"     /* fill with a fictitious return address */
+    "  push eax           \n"                       /* oeeee oe oe oeeeeee */
 #endif
 
     "  extern __start     \n"                   /* entry point of c0du.asm */
