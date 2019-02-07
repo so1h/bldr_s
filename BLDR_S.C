@@ -78,7 +78,7 @@ void printstrBIOS ( const char * str )
     }
 }
 
-void __setup_unreal ( void ) ;      /* to reenable unreal mode if necesary */
+void __setup_unreal ( void ) ;     /* to reenable unreal mode if necessary */
 
 //void __start__ ( void ) {
 void __start__ ( char * ptrPXENV, char * ptrPXE ) {
