@@ -18,4 +18,6 @@ In the makefile change 1/0 in the line 22 for set model unreal/huge.
 
 Screenshots: 
 
+    https://github.com/so1h/bldr_s/blob/master/make%20bootpxe.png
     
+    https://github.com/so1h/bldr_s/blob/master/make%20bootpxe.png
