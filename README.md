@@ -1,5 +1,5 @@
 # bldr_s
-boot loader for booting by PXE, writed in SmallerC (model huge/unreal)
+Boot loader for booting by PXE, writed in SmallerC (model huge/unreal)
 https://github.com/alexfru/SmallerC
 
 To clean: 
