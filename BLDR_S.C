@@ -84,15 +84,15 @@ int printfBIOS ( char * fmt, ... )
 {
     va_list ap ;
     char buf [ 512 ] ;
-	if (strchr(fmt, '%') == NULL) 
+    if (strchr(fmt, '%') == NULL) 
         printstrBIOS(fmt) ;
-	else
-	{ 
+    else
+    { 
         va_start(ap, fmt) ;
         vsprintf(buf, fmt, ap) ;
         va_end(ap) ;
         printstrBIOS(buf) ;
-    }    	
+    }       
 }
 
 void __setup_unreal ( void ) ;     /* to reenable unreal mode if necessary */
