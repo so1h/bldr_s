@@ -9,7 +9,7 @@
 
 #include <inttypes.h>                         /* uint8_t, uint16_t, uint32 */
 
-#include <stdio.h>                                              /* sprintf */
+#include <stdio.h>                                             /* vsprintf */
 
 #include <stdarg.h>                                   /* va_list, va_start */
 
