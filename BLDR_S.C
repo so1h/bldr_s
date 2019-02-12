@@ -11,6 +11,8 @@
 
 #include <stdio.h>                                              /* sprintf */
 
+#include <stdarg.h>                                   /* va_list, va_start */
+
 /* 2.4.9.1 NBP Execution for x86 PC/AT (PXE Specification pag 31)          */
 
 void startBin ( void ) ;
@@ -78,14 +80,24 @@ void printstrBIOS ( const char * str )
     }
 }
 
+int printfBIOS ( char * fmt, ... ) 
+{
+	va_list ap ;
+    char buf [ 512 ] ;
+	va_start(ap, fmt) ;
+    vsprintf(buf, fmt, ap) ;
+	printstrBIOS(buf) ;
+}
+
 void __setup_unreal ( void ) ;     /* to reenable unreal mode if necessary */
 
 //void __start__ ( void ) {
-void __start__ ( char * ptrPXENV, char * ptrPXE ) {
+void __start__ ( char * ptrPXENV, char * ptrPXE ) 
+{
 
     char buf [ 512 ] ;
-
-    sprintf(buf,
+	
+    printfBIOS(
         "\n"
         " Hello world from Network Boot Program writen in SmallerC \n"
         "\n"
@@ -100,9 +112,7 @@ void __start__ ( char * ptrPXENV, char * ptrPXE ) {
         (char *)0xFFFFFFF5,
         *((char *)0xFFFFFFF5)
     ) ;
-
-    printstrBIOS(buf) ;
-
+	
     for ( ; ; ) ;
 
 }
