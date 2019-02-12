@@ -87,6 +87,7 @@ int printfBIOS ( char * fmt, ... )
     va_start(ap, fmt) ;
     vsprintf(buf, fmt, ap) ;
     printstrBIOS(buf) ;
+    va_end(ap) ;
 }
 
 void __setup_unreal ( void ) ;     /* to reenable unreal mode if necessary */
