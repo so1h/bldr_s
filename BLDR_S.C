@@ -83,7 +83,7 @@ void printstrBIOS ( const char * str )
 int printfBIOS ( char * fmt, ... ) 
 {
     va_list ap ;
-    static char buf [ 512 ] ;      /* if no static, problems with vsprintf */          
+    char buf [ 512 ] ;    
     int err = 0 ;
     if (strchr(fmt, '%') == NULL) 
         printstrBIOS(fmt) ;
