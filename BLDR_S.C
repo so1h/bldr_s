@@ -11,7 +11,7 @@
 
 #include <stdio.h>                                             /* vsprintf */
 
-#include <stdarg.h>                                   /* va_list, va_start */
+#include <stdarg.h>                           /* va_list, va_start, va_end */
 
 /* 2.4.9.1 NBP Execution for x86 PC/AT (PXE Specification pag 31)          */
 
@@ -100,9 +100,6 @@ void __setup_unreal ( void ) ;     /* to reenable unreal mode if necessary */
 //void __start__ ( void ) {
 void __start__ ( char * ptrPXENV, char * ptrPXE ) 
 {
-
-    char buf [ 512 ] ;
-    
     printfBIOS(
         "\n"
         " Hello world from Network Boot Program writen in SmallerC \n"
@@ -118,7 +115,7 @@ void __start__ ( char * ptrPXENV, char * ptrPXE )
         (char *)0xFFFFFFF5,
         *((char *)0xFFFFFFF5)
     ) ;
-    
+    		
     for ( ; ; ) ;
 
 }
