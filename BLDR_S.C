@@ -83,16 +83,18 @@ void printstrBIOS ( const char * str )
 int printfBIOS ( char * fmt, ... ) 
 {
     va_list ap ;
-    char buf [ 512 ] ;
-    if (strchr(fmt, '%') == NULL) 
+    static char buf [ 512 ] ;      /* if no static, problems with vsprintf */          
+	int err = 0 ;
+	if (strchr(fmt, '%') == NULL) 
         printstrBIOS(fmt) ;
-    else
-    { 
+	else
+	{ 
         va_start(ap, fmt) ;
-        vsprintf(buf, fmt, ap) ;
-        va_end(ap) ;
+        err = vsprintf(buf, fmt, ap) ;
+        va_end(ap) ;                         /* no hace nada, ver stdarg.h */
         printstrBIOS(buf) ;
-    }       
+    }    	
+	return(err) ;
 }
 
 void __setup_unreal ( void ) ;     /* to reenable unreal mode if necessary */
